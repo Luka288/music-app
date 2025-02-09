@@ -1,0 +1,27 @@
+// SCSS რუთში შენახული ფერების ფონტების
+// და SCSS ის ფუნქციების იმპორტი
+@use "../../scss/utils/variables" as *;
+@use "../../scss/utils/mixins" as *;
+@use "../../scss/base/typography" as *;
+
+main {
+  width: 100%;
+  height: 100vh;
+  background-color: $primary-bg-color;
+
+  .test-cards {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+
+    .box {
+      width: fit-content;
+      height: 250px;
+      padding: 20px;
+      background-color: $primary-card-bg;
+      border: $base-card-border-bg;
+      color: $base-white-font;
+      font-family: $montserrat-font;
+    }
+  }
+}
