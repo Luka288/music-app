@@ -1,10 +1,19 @@
 <main>
-  <div class="test-cards">
-    <div class="box" *ngFor="let item of response">
+  <section class="topSection">
+    <div class="headText">
+      <h2>Browse musics with us.</h2>
       <p>
-        {{ item.title }}
+        We provide music for those who seek to discover new sounds and break
+        free from repetitive playlists. If you're looking for fresh and exciting
+        music, you've come to the right place!
       </p>
-      <audio [src]="item.preview" controls></audio>
     </div>
-  </div>
+
+    <div class="mainImage">
+      <img
+        src="assets/images/pngfind.com-ear-png-277969.png"
+        alt="Home Image"
+      />
+    </div>
+  </section>
 </main>
