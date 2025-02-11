@@ -14,6 +14,6 @@ export class MusicService {
 
   // სატესტოდ eminem უნდა შეიცვალოს მომხმარებლის search ის მიხედივთ
   searchMusic() {
-    return this.http.get<base_search>(`${this.API_URL}/search?q=dojacat`);
+    return this.http.get<base_search>(`${this.API_URL}/search?q=niaz`);
   }
 }

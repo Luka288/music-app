@@ -1,0 +1,23 @@
+section {
+  width: 40px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  z-index: 1121;
+  background: rgba(0, 31, 63, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(12, 91, 170, 0.3);
+  padding: 20px;
+
+  .topSec {
+    i.fa-bars {
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+    }
+  }
+}
+
+.active {
+  width: 300px;
+}

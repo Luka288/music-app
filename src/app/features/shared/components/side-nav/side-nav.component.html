@@ -1,0 +1,9 @@
+<section [ngClass]="{ active: isOpen }">
+  <div class="topSec">
+    <i
+      class="fa-solid fa-bars"
+      [ngClass]="{ 'fa-x': isOpen }"
+      (click)="toggleNav()"
+    ></i>
+  </div>
+</section>
