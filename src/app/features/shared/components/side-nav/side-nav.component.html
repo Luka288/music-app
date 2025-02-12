@@ -1,9 +1,38 @@
 <section [ngClass]="{ active: isOpen }">
   <div class="topSec">
-    <i
-      class="fa-solid fa-bars"
-      [ngClass]="{ 'fa-x': isOpen }"
+    <button
+      class="hamburger hamburger--spin"
+      [ngClass]="{ 'is-active': isOpen }"
       (click)="toggleNav()"
-    ></i>
+    >
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
   </div>
+
+  <nav>
+    <ul>
+      <li routerLink="search" routerLink="home">
+        <i class="fa-solid fa-house"></i>
+        <span [ngClass]="{ activeText: isOpen }">home</span>
+      </li>
+      <li routerLink="search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span [ngClass]="{ activeText: isOpen }">search</span>
+      </li>
+      <li>
+        <i class="fa-solid fa-chart-simple"></i>
+        <span [ngClass]="{ activeText: isOpen }">trendings</span>
+      </li>
+      <li>
+        <i class="fa-solid fa-music"></i>
+        <span [ngClass]="{ activeText: isOpen }">artists</span>
+      </li>
+      <li>
+        <i class="fa-solid fa-fire"></i>
+        <span [ngClass]="{ activeText: isOpen }">new releases</span>
+      </li>
+    </ul>
+  </nav>
 </section>

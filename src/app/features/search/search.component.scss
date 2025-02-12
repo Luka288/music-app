@@ -1,0 +1,49 @@
+@use "../../scss/utils/variables" as *;
+@use "../../scss/utils/mixins" as *;
+@use "../../scss/base/typography" as *;
+main {
+  width: 100%;
+  height: 100vh;
+  background-color: $primary-bg-color;
+
+  .content {
+    width: 85%;
+    height: 100%;
+    margin: auto;
+    @include flex(row, space-evenly, center, wrap);
+    // background-color: blueviolet;
+    .sideContainer {
+      width: 250px;
+      height: 700px;
+      padding: 20px;
+      // background-color: red;
+      background: linear-gradient(135deg, #081b36, #0a2f5c);
+      border: 2px solid $darkblue-bg;
+
+      .inputContainer {
+        input {
+          width: 230px;
+          height: 30px;
+          padding: 5px;
+          border-radius: 10px;
+          outline: none;
+          border: $electric-border;
+          font-family: $raleway;
+          font-size: 20px;
+          color: $base-white-font;
+          background-color: #0a2f5c;
+        }
+
+        input::placeholder {
+          color: $base-white-font;
+        }
+      }
+    }
+
+    .foundItems {
+      width: 80%;
+      height: 100vh;
+      // background-color: black;
+    }
+  }
+}

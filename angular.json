@@ -30,8 +30,16 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"],
-            "scripts": []
+            "styles": [
+              "src/styles.scss",
+              "node_modules/hamburgers/dist/hamburgers.min.css",
+              "src/app/scss/utils/_variables.scss",
+              "src/app/scss/utils/_mixins.scss"
+            ],
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/scss"]
+            }
           },
           "configurations": {
             "production": {

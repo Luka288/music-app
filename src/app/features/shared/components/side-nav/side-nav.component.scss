@@ -1,3 +1,7 @@
+@use "../../../../scss/utils/variables" as *;
+@use "../../../../scss/utils/mixins" as *;
+@use "../../../../scss/base/typography" as *;
+
 section {
   width: 40px;
   height: 100vh;
@@ -10,10 +14,48 @@ section {
   padding: 20px;
 
   .topSec {
-    i.fa-bars {
-      color: white;
-      font-size: 30px;
-      cursor: pointer;
+    .hamburger {
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    button.hamburger .hamburger-inner,
+    .hamburger .hamburger-inner::before,
+    .hamburger .hamburger-inner::after {
+      background-color: white !important;
+    }
+  }
+
+  nav {
+    ul {
+      width: 100%;
+      @include flex(column, flex-start, flex-start, wrap);
+      gap: 30px;
+      padding: 8px;
+
+      li {
+        width: fit-content;
+        padding-top: 50px;
+        list-style: none;
+        @include flex(row, flex-start, center, wrap);
+        gap: 25px;
+        color: white;
+        cursor: pointer;
+
+        i {
+          font-size: 20px;
+        }
+
+        span {
+          display: none;
+          font-family: $inter;
+          text-transform: capitalize;
+        }
+
+        .activeText {
+          display: block;
+        }
+      }
     }
   }
 }
@@ -21,3 +63,14 @@ section {
 .active {
   width: 300px;
 }
+
+// <i class="fa-solid fa-magnifying-glass"></i>
+
+// ტრენდული მუსიკები
+// <i class="fa-solid fa-chart-simple"></i>
+
+// არტისტები
+// <i class="fa-solid fa-music"></i>
+
+// ახალი გამოსული მუსიკები
+// <i class="fa-solid fa-fire"></i>

@@ -1,0 +1,19 @@
+<main>
+  <div class="content">
+    <div class="sideContainer">
+      <div class="inputContainer">
+        <form>
+          <input
+            [formControl]="searchControl"
+            type="text"
+            id="artistSearch"
+            placeholder="search for artist"
+          />
+        </form>
+      </div>
+    </div>
+    <div class="foundItems">
+      <app-card *ngFor="let item of response" [base_input]="item" />
+    </div>
+  </div>
+</main>

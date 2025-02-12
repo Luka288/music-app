@@ -1,0 +1,15 @@
+.music-card {
+  width: 100%;
+  max-width: 350px;
+  background-color: red;
+
+  .box {
+    .title {
+      color: white;
+    }
+
+    audio {
+      background-color: red;
+    }
+  }
+}

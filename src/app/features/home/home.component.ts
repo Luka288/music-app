@@ -13,28 +13,4 @@ import { CommonModule } from '@angular/common';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {
-  private readonly musicService = inject(MusicService);
-
-  // დროებით დატა ბაინდინგი
-  base_response: base_search | null = null;
-  response: search_result[] = [];
-
-  constructor() {
-    this.searchMusics();
-  }
-
-  searchMusics() {
-    this.musicService
-      .searchMusic()
-      .pipe(
-        tap((res) => {
-          console.log(res);
-          this.base_response = res;
-          this.response = [...res.data];
-          console.log(this.response);
-        })
-      )
-      .subscribe();
-  }
-}
+export class HomeComponent {}
