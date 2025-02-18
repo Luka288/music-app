@@ -1,0 +1,14 @@
+@use "../../../../scss/utils/variables" as *;
+@use "../../../../scss/utils/mixins" as *;
+@use "../../../../scss/base/typography" as *;
+
+.audioPlayer {
+  width: 80%;
+  font-family: $raleway;
+  color: white;
+  background-color: #2c3e4c;
+}
+
+::ng-deep .mdc-slider__thumb-knob {
+  border-radius: 30px !important;
+}

@@ -16,3 +16,6 @@ export class SideNavComponent {
     this.isOpen = !this.isOpen;
   }
 }
+
+// როუტებზე გადასვლისას უნდა გახდეს isOpen = false
+// TODO: შესანახია behaviorSubject-ში isOpen გასაკეთებელია სერვისი

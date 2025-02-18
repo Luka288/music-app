@@ -1,17 +1,20 @@
 @use "../../scss/utils/variables" as *;
 @use "../../scss/utils/mixins" as *;
 @use "../../scss/base/typography" as *;
+
 main {
   width: 100%;
-  height: 100vh;
+  min-height: 100%;
   background-color: $primary-bg-color;
 
   .content {
     width: 85%;
     height: 100%;
+    padding-top: 90px;
     margin: auto;
     @include flex(row, space-evenly, center, wrap);
     // background-color: blueviolet;
+
     .sideContainer {
       width: 250px;
       height: 700px;
@@ -38,12 +41,69 @@ main {
           color: $base-white-font;
         }
       }
+
+      .genres {
+        height: 300px;
+        color: white;
+        font-family: $raleway;
+
+        .chosenGenre {
+          width: fit-content;
+          height: 50px;
+
+          .lil-title {
+            p {
+              font-size: 14px;
+            }
+          }
+
+          a.chosen {
+            width: fit-content;
+            height: 30px;
+            background-color: #164379;
+            padding: 10px;
+            border-radius: 10px;
+
+            span {
+              cursor: pointer;
+            }
+          }
+        }
+
+        .baseGenres {
+          .box-title {
+            p {
+              font-size: 20px;
+            }
+          }
+
+          .anchors {
+            @include base_align(column, flex-start, center);
+            gap: 15px;
+            height: 300px;
+            overflow: auto;
+
+            a {
+              width: fit-content;
+              cursor: pointer;
+            }
+          }
+        }
+      }
     }
 
-    .foundItems {
+    .wrapContent {
       width: 80%;
-      height: 100vh;
-      // background-color: black;
+
+      .foundItems {
+        width: 80%;
+        height: 600px;
+        padding: 20px;
+        @include base_align(row, flex-start, wrap);
+        gap: 15px;
+        overflow: auto;
+        // background-color: black;
+      }
     }
   }
 }

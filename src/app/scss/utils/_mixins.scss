@@ -6,3 +6,10 @@
   align-items: $align;
   flex-wrap: $wrap;
 }
+
+@mixin base_align($direction: row, $align: center, $wrap: wrap) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  flex-wrap: $wrap;
+}

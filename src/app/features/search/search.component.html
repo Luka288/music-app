@@ -11,9 +11,48 @@
           />
         </form>
       </div>
+      <div class="genres">
+        <div class="chosenGenre">
+          <div class="lil-title">
+            <p>
+              {{
+                (chosenGenre$ | async)!.length === 0
+                  ? "No genres selected"
+                  : "Selected genre"
+              }}
+            </p>
+          </div>
+
+          @for (item of (chosenGenre$ | async); track $index) {
+          <a class="chosen">
+            <span (click)="removeGenre(item)">
+              <i class="fa-solid fa-xmark"></i>
+            </span>
+            {{ item.name }}
+          </a>
+          }
+        </div>
+
+        <div class="baseGenres">
+          <div class="box-title">
+            <p>Search by genre</p>
+          </div>
+
+          <div class="anchors">
+            @for (genre of (genres$ | async); track $index) {
+            <a (click)="addGenre(genre)">{{ genre.name }}</a>
+            }
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="foundItems">
-      <app-card *ngFor="let item of response" [base_input]="item" />
+    <div class="wrapContent">
+      <div class="foundItems">
+        <app-card
+          *ngFor="let item of searchResults$ | async"
+          [base_input]="item"
+        />
+      </div>
     </div>
   </div>
 </main>

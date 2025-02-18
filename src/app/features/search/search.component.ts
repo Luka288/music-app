@@ -1,15 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { debounceTime, tap } from 'rxjs';
-import {
-  base_search,
-  search_result,
-} from '../shared/interfaces/base.res.interface';
+import { BehaviorSubject, debounceTime } from 'rxjs';
+import { search_result } from '../shared/interfaces/base.res.interface';
 import { MusicService } from '../shared/services/music.service';
-import { podcast } from '../shared/interfaces/charts.interface';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { consumerMarkDirty } from '@angular/core/primitives/signals';
 import { CardComponent } from '../shared/components/card/card.component';
 import { CommonModule } from '@angular/common';
+import { genre, genres } from '../shared/interfaces/genre.interface';
+import { UserGenreService } from '../shared/services/user-genre.service';
+import { chosenGenre } from '../shared/interfaces/genres.interface';
 
 @Component({
   selector: 'app-search',
@@ -19,28 +17,51 @@ import { CommonModule } from '@angular/common';
 })
 export class SearchComponent {
   private readonly musicService = inject(MusicService);
+  private readonly genreService = inject(UserGenreService);
 
   searchControl = new FormControl('', { nonNullable: true });
 
-  // დროებით დატა ბაინდინგი
-  base_response: podcast[] = [];
-  response: search_result[] = [];
+  searchResults$ = new BehaviorSubject<search_result[]>([]);
+  genres$ = new BehaviorSubject<genres[]>([]);
+  chosenGenre$ = new BehaviorSubject<chosenGenre[]>([]);
 
   constructor() {
     this.search();
     this.userSearch('niaz');
-  }
-
-  search() {
-    this.searchControl.valueChanges.pipe(debounceTime(300)).subscribe((res) => {
-      this.userSearch(res);
-    });
+    this.getGenres();
   }
 
   userSearch(querry: string) {
     this.musicService.searchMusic(querry).subscribe((res) => {
-      console.log(res.data);
-      this.response = res.data;
+      this.searchResults$.next(res.data);
+      console.log(res);
     });
+  }
+
+  search() {
+    this.searchControl.valueChanges.pipe(debounceTime(300)).subscribe((res) => {
+      if (res === '') return;
+      this.userSearch(res);
+    });
+  }
+
+  getGenres() {
+    this.musicService.fetchCatergory().subscribe((res) => {
+      this.genres$.next(res.data);
+      console.log(res);
+    });
+  }
+
+  addGenre(genre: chosenGenre) {
+    this.genreService.addGenre(genre);
+
+    if (this.genreService.userGenres.length > 0) {
+      this.chosenGenre$.next(this.genreService.userGenres);
+    }
+  }
+
+  removeGenre(item: chosenGenre) {
+    this.genreService.removeGenre(item);
+    this.chosenGenre$.next(this.genreService.userGenres);
   }
 }

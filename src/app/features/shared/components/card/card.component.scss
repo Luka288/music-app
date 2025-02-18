@@ -1,15 +1,48 @@
+@use "../../../../scss/utils/variables" as *;
+@use "../../../../scss/utils/mixins" as *;
+@use "../../../../scss/base/typography" as *;
+
 .music-card {
-  width: 100%;
-  max-width: 350px;
-  background-color: red;
+  width: 250px;
+  height: 450px;
+  background-color: #1f456e;
+  border-radius: 10px;
+  border: 1px solid white;
+  font-family: $raleway;
+  color: white;
+  @include flex(column, center, flex-start);
+  gap: 15px;
+  padding: 15px;
 
-  .box {
-    .title {
-      color: white;
-    }
+  .card-head {
+    width: 150px;
 
-    audio {
-      background-color: red;
+    .imgC {
+      width: 250px;
+
+      img {
+        width: 250px;
+        height: 250px;
+        object-fit: contain;
+      }
     }
+  }
+
+  .card-body {
+    width: 150px;
+    color: white;
+    gap: 30px;
+
+    .music-description {
+      width: 250px;
+      font-size: 14px;
+    }
+  }
+
+  .player-controls {
+    width: 150px;
+    margin: auto;
+    @include flex(column, center, center, wrap);
+    background-color: black;
   }
 }

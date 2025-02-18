@@ -4,6 +4,7 @@ import { music_API_BASE } from '../consts/consts';
 import { catchError, tap } from 'rxjs';
 import { base_search } from '../interfaces/base.res.interface';
 import { chart } from '../interfaces/charts.interface';
+import { genre } from '../interfaces/genre.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -20,11 +21,15 @@ export class MusicService {
   //&limit=10
   searchMusic(querry: string) {
     return this.http.get<base_search>(
-      `${this.API_URL}/search?q=${querry}&limit=1`
+      `${this.API_URL}/search?q=${querry}&limit=20`
     );
   }
 
   artistAlbum() {
     return this.http.get(`${this.API_URL}/search/album?q=niaz&limit=10`);
+  }
+
+  fetchCatergory() {
+    return this.http.get<genre>(`/api/genre`);
   }
 }
