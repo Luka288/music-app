@@ -12,7 +12,7 @@ main {
     height: 100%;
     padding-top: 90px;
     margin: auto;
-    @include flex(row, space-evenly, center, wrap);
+    @include flex(row, space-evenly, center);
     // background-color: blueviolet;
 
     .sideContainer {

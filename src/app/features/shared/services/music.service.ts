@@ -38,13 +38,4 @@ export class MusicService {
   musicByGenres(genreID: number) {
     return this.http.get<genre_artist>(`/api/genre/${genreID}/artists`);
   }
-
-  specificArtist(_id: number) {
-    console.log(_id);
-    return this.http.get<specific_artist>(
-      `${this.API_URL}/artist/${_id}/top?limit-1`
-    );
-  }
 }
-
-// https://api.deezer.com/artist/230/top?limit=50

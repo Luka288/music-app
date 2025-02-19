@@ -10,6 +10,9 @@ import { UserGenreService } from '../shared/services/user-genre.service';
 import { chosenGenre } from '../shared/interfaces/genres.interface';
 import { ArtistCardComponent } from '../shared/components/artist-card/artist-card.component';
 import { full_artist_data } from '../shared/interfaces/charts.interface';
+import { ArtistService } from '../shared/services/artist.service';
+import { ArtistProfileComponent } from '../shared/components/artist-profile/artist-profile.component';
+import { profile_interface } from '../shared/interfaces/artist.interface';
 
 @Component({
   selector: 'app-search',
@@ -19,6 +22,7 @@ import { full_artist_data } from '../shared/interfaces/charts.interface';
     CardComponent,
     CommonModule,
     ArtistCardComponent,
+    ArtistProfileComponent,
   ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
@@ -26,6 +30,7 @@ import { full_artist_data } from '../shared/interfaces/charts.interface';
 export class SearchComponent {
   private readonly musicService = inject(MusicService);
   private readonly genreService = inject(UserGenreService);
+  private readonly artistService = inject(ArtistService);
 
   searchControl = new FormControl('', { nonNullable: true });
 
@@ -34,6 +39,7 @@ export class SearchComponent {
   chosenGenre$ = new Subject<chosenGenre[]>();
 
   artist$ = new Subject<full_artist_data[]>();
+  profile$ = new Subject<profile_interface>();
 
   constructor() {}
 
@@ -84,8 +90,9 @@ export class SearchComponent {
   }
 
   fetchSpecArtist(_id: number) {
-    this.musicService.specificArtist(_id).subscribe((res) => {
+    this.artistService.specificArtist(_id).subscribe((res) => {
       console.log(res);
+      this.profile$.next(res);
     });
   }
 }

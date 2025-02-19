@@ -1,0 +1,57 @@
+@use "../../../../scss/utils/variables" as *;
+@use "../../../../scss/utils/mixins" as *;
+@use "../../../../scss/base/typography" as *;
+
+.profile-container {
+  width: 100%;
+  max-width: 550px;
+  height: 100px;
+  background-color: $profile-bg;
+  @include flex(row, flex-start, center);
+  gap: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  .profile-image {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+
+    img {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+    }
+  }
+
+  .profile-info {
+    width: 200px;
+
+    .artist-name {
+      font-family: $montserrat-font;
+      font-size: 18px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .basic-inf {
+      a {
+        font-family: $montserrat-font;
+        font-size: 14px;
+        font-weight: 600;
+        color: white;
+        text-decoration: none;
+        border-bottom: 1px solid white;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    max-width: 100%;
+    position: fixed;
+    margin-bottom: 0;
+    bottom: 0;
+  }
+}

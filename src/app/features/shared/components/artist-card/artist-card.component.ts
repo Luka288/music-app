@@ -12,9 +12,9 @@ import {
 })
 export class ArtistCardComponent {
   @Input({ alias: 'artistInput' }) artist: full_artist_data | null = null;
-  @Output() passUrl = new EventEmitter<number>();
+  @Output() emitId = new EventEmitter<number>();
 
   fetchSpecArtist(_id?: number) {
-    this.passUrl.emit(_id);
+    this.emitId.emit(_id);
   }
 }
