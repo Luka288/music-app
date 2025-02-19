@@ -1,15 +1,15 @@
-<div class="profile-container">
+<div class="profile-container" *ngIf="information">
   <div class="profile-image">
-    <img [src]="information?.picture_medium" alt="" />
+    <img [src]="information.picture_medium" alt="" />
   </div>
   <div class="profile-info">
     <div class="artist-name">
       <p>
-        {{ information?.name }}
+        {{ information.name }}
       </p>
     </div>
     <div class="basic-inf">
-      <a [href]="information?.link" target="_blank"
+      <a [href]="information.link" target="_blank"
         >Visit artists deezer profile</a
       >
     </div>

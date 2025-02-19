@@ -23,6 +23,12 @@ main {
       background: linear-gradient(135deg, #081b36, #0a2f5c);
       border: 2px solid $darkblue-bg;
 
+      &.active {
+        display: block;
+        width: 75%;
+        position: absolute;
+      }
+
       .inputContainer {
         input {
           width: 230px;
@@ -106,6 +112,32 @@ main {
       }
     }
   }
+
+  .filter-toggle {
+    display: none;
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    top: 10px;
+    right: 0;
+    background-color: gray;
+    padding: 10px;
+    border-radius: 30px;
+
+    i {
+      font-size: 29px;
+      color: white;
+    }
+  }
+
+  .inactive {
+    display: none;
+  }
+
+  // <i class="fa-solid fa-bars"></i>
+
+  // ღია
+  // <i class="fa-solid fa-bars-staggered"></i>
 }
 
 ::-webkit-scrollbar {
@@ -118,5 +150,64 @@ main {
 
   &:hover {
     background-color: #2c4d75;
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    .filter-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .content {
+      width: 100%;
+
+      .sideContainer {
+        display: none;
+
+        .inputContainer {
+          input {
+          }
+
+          input::placeholder {
+          }
+        }
+
+        .genres {
+          .chosenGenre {
+            .lil-title {
+              p {
+              }
+            }
+
+            a.chosen {
+              span {
+              }
+            }
+          }
+
+          .baseGenres {
+            .box-title {
+              p {
+              }
+            }
+
+            .anchors {
+              a {
+              }
+            }
+          }
+        }
+      }
+
+      .wrapContent {
+        .foundItems {
+          @include flex(row, center, center, wrap);
+          padding: 0;
+        }
+      }
+    }
   }
 }

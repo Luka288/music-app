@@ -1,6 +1,12 @@
 <main>
+  <div class="filter-toggle" (click)="toggleFilter()">
+    <i
+      class="fa-solid fa-bars"
+      [ngClass]="filterOpen === true ? 'fa-bars-staggered' : 'fa-bars'"
+    ></i>
+  </div>
   <div class="content">
-    <div class="sideContainer">
+    <div class="sideContainer" [ngClass]="{ active: filterOpen }">
       <div class="inputContainer">
         <form>
           <input

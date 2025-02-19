@@ -37,9 +37,10 @@ export class SearchComponent {
   searchResults$ = new Subject<search_result[]>();
   genres$ = new Subject<genres[]>();
   chosenGenre$ = new Subject<chosenGenre[]>();
-
   artist$ = new Subject<full_artist_data[]>();
   profile$ = new Subject<profile_interface>();
+
+  filterOpen: boolean = false;
 
   constructor() {}
 
@@ -94,5 +95,10 @@ export class SearchComponent {
       console.log(res);
       this.profile$.next(res);
     });
+  }
+
+  toggleFilter() {
+    this.filterOpen = !this.filterOpen;
+    console.log(this.filterOpen);
   }
 }
