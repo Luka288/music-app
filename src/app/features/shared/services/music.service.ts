@@ -5,6 +5,8 @@ import { catchError, tap } from 'rxjs';
 import { base_search } from '../interfaces/base.res.interface';
 import { chart } from '../interfaces/charts.interface';
 import { genre } from '../interfaces/genre.interface';
+import { genre_artist } from '../interfaces/artist.interface';
+import { specific_artist } from '../interfaces/spec.artist.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -32,4 +34,17 @@ export class MusicService {
   fetchCatergory() {
     return this.http.get<genre>(`/api/genre`);
   }
+
+  musicByGenres(genreID: number) {
+    return this.http.get<genre_artist>(`/api/genre/${genreID}/artists`);
+  }
+
+  specificArtist(_id: number) {
+    console.log(_id);
+    return this.http.get<specific_artist>(
+      `${this.API_URL}/artist/${_id}/top?limit-1`
+    );
+  }
 }
+
+// https://api.deezer.com/artist/230/top?limit=50

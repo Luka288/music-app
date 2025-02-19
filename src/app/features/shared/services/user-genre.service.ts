@@ -1,10 +1,15 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { chosenGenre } from '../interfaces/genres.interface';
+import { HttpClient } from '@angular/common/http';
+import { artist_data, full_artist_data } from '../interfaces/charts.interface';
+import { genre_artist } from '../interfaces/artist.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserGenreService {
+  private readonly http = inject(HttpClient);
+
   userGenres: chosenGenre[] = [];
 
   addGenre(genre: chosenGenre) {

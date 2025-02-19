@@ -1,0 +1,22 @@
+@use "../../../../scss/utils/variables" as *;
+@use "../../../../scss/utils/mixins" as *;
+@use "../../../../scss/base/typography" as *;
+
+.main-artist-card {
+  width: 250px;
+  height: 450px;
+  background-color: $main-card-bg;
+  border-radius: 10px;
+  border: 1px solid white;
+  font-family: $raleway;
+  color: white;
+  @include flex(column, center, flex-start);
+  gap: 15px;
+  padding: 15px;
+
+  .artist-info {
+    .artistAnchor {
+      cursor: pointer;
+    }
+  }
+}

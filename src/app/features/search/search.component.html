@@ -16,9 +16,7 @@
           <div class="lil-title">
             <p>
               {{
-                (chosenGenre$ | async)!.length === 0
-                  ? "No genres selected"
-                  : "Selected genre"
+                (chosenGenre$ | async) ? "Selected genre" : "No genres selected"
               }}
             </p>
           </div>
@@ -48,9 +46,17 @@
     </div>
     <div class="wrapContent">
       <div class="foundItems">
+        @if (!(artist$ | async)) {
         <app-card
           *ngFor="let item of searchResults$ | async"
           [base_input]="item"
+        />
+        }
+
+        <app-artist-card
+          *ngFor="let item of artist$ | async"
+          (passUrl)="fetchSpecArtist($event)"
+          [artistInput]="item"
         />
       </div>
     </div>

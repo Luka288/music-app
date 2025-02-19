@@ -1,17 +1,25 @@
 import { Component, inject } from '@angular/core';
-import { BehaviorSubject, debounceTime } from 'rxjs';
+import { debounceTime, Subject } from 'rxjs';
 import { search_result } from '../shared/interfaces/base.res.interface';
 import { MusicService } from '../shared/services/music.service';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardComponent } from '../shared/components/card/card.component';
 import { CommonModule } from '@angular/common';
-import { genre, genres } from '../shared/interfaces/genre.interface';
+import { genres } from '../shared/interfaces/genre.interface';
 import { UserGenreService } from '../shared/services/user-genre.service';
 import { chosenGenre } from '../shared/interfaces/genres.interface';
+import { ArtistCardComponent } from '../shared/components/artist-card/artist-card.component';
+import { full_artist_data } from '../shared/interfaces/charts.interface';
 
 @Component({
   selector: 'app-search',
-  imports: [FormsModule, ReactiveFormsModule, CardComponent, CommonModule],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    CardComponent,
+    CommonModule,
+    ArtistCardComponent,
+  ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
 })
@@ -21,11 +29,15 @@ export class SearchComponent {
 
   searchControl = new FormControl('', { nonNullable: true });
 
-  searchResults$ = new BehaviorSubject<search_result[]>([]);
-  genres$ = new BehaviorSubject<genres[]>([]);
-  chosenGenre$ = new BehaviorSubject<chosenGenre[]>([]);
+  searchResults$ = new Subject<search_result[]>();
+  genres$ = new Subject<genres[]>();
+  chosenGenre$ = new Subject<chosenGenre[]>();
 
-  constructor() {
+  artist$ = new Subject<full_artist_data[]>();
+
+  constructor() {}
+
+  ngOnInit() {
     this.search();
     this.userSearch('niaz');
     this.getGenres();
@@ -34,7 +46,6 @@ export class SearchComponent {
   userSearch(querry: string) {
     this.musicService.searchMusic(querry).subscribe((res) => {
       this.searchResults$.next(res.data);
-      console.log(res);
     });
   }
 
@@ -48,7 +59,6 @@ export class SearchComponent {
   getGenres() {
     this.musicService.fetchCatergory().subscribe((res) => {
       this.genres$.next(res.data);
-      console.log(res);
     });
   }
 
@@ -58,10 +68,24 @@ export class SearchComponent {
     if (this.genreService.userGenres.length > 0) {
       this.chosenGenre$.next(this.genreService.userGenres);
     }
+    this.filterByGenre(genre.id);
+  }
+
+  filterByGenre(genreID: number) {
+    this.musicService.musicByGenres(genreID).subscribe((res) => {
+      this.artist$.next(res.data);
+      console.log(res);
+    });
   }
 
   removeGenre(item: chosenGenre) {
     this.genreService.removeGenre(item);
     this.chosenGenre$.next(this.genreService.userGenres);
+  }
+
+  fetchSpecArtist(_id: number) {
+    this.musicService.specificArtist(_id).subscribe((res) => {
+      console.log(res);
+    });
   }
 }

@@ -1,0 +1,15 @@
+<div class="main-artist-card">
+  <div class="card-header">
+    <div class="artist-image">
+      <img [src]="artist?.picture_medium" alt="" />
+    </div>
+    <div class="artist-info">
+      <h3>
+        {{ artist?.name }}
+      </h3>
+      <a (click)="fetchSpecArtist(artist?.id)" class="artistAnchor"
+        >Listen to artist</a
+      >
+    </div>
+  </div>
+</div>
